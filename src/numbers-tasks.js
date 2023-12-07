@@ -104,7 +104,7 @@ function getLinearEquationRoot(/* a, b */) {}
  *   (0,1) (0,1)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  return 
+  return [x1, x2, y1, y2];
 }
 
 /**
@@ -120,7 +120,9 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {}
+function getLastDigit(value) {
+  return value % 10;
+}
 
 /**
  * Returns a number by given string representation.
