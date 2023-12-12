@@ -135,7 +135,7 @@ function getLastDigit(value) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {}
+function parseNumberFromString(value ) {}
 
 /**
  * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
@@ -150,7 +150,9 @@ function parseNumberFromString(/* value */) {}
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {}
+function getParallelepipedDiagonal(a, b, c) {
+  return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
+}
 
 /**
  * Returns the number rounded to specified power of 10.
@@ -169,7 +171,9 @@ function getParallelepipedDiagonal(/* a, b, c */) {}
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {}
+function roundToPowerOfTen(num, pow) {
+  return 
+}
 
 /**
  * Returns true is the number is prime; otherwise false.
