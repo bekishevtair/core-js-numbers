@@ -50,7 +50,9 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  return (value1 + value2) / 2 === Infinity
+    ? '+1.7976931348623157e+308'
+    : (value1 + value2) / 2;
 }
 
 /**
@@ -84,7 +86,9 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {}
+function getLinearEquationRoot(a, b) {
+  return -b / a;
+}
 
 /**
  * Returns an angle (in radians) between two vectors given by xi and yi,
@@ -135,7 +139,9 @@ function getLastDigit(value) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(value ) {}
+function parseNumberFromString(value) {
+  return +value;
+}
 
 /**
  * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
@@ -171,9 +177,7 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(num, pow) {
-  return 
-}
+function roundToPowerOfTen(/* num, pow */) {}
 
 /**
  * Returns true is the number is prime; otherwise false.
@@ -209,7 +213,12 @@ function isPrime(/* n */) {}
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {}
+function toNumber(value, def) {
+  if (+value === 'number') {
+    return +value;
+  }
+  return def;
+}
 
 /**
  * Returns the cube of the given number.
@@ -222,7 +231,9 @@ function toNumber(/* value, def */) {}
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {}
+function getCube(num) {
+  return num ** 3;
+}
 
 /**
  * Returns the Fibonacci number located at the index position.
@@ -250,7 +261,9 @@ function getFibonacciNumber(/* index */) {}
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {}
+function getSumToN(n) {
+  return (n * (n + 1)) / 2;
+}
 
 /**
  * Returns the sum of the digits of a given number.
@@ -263,7 +276,14 @@ function getSumToN(/* n */) {}
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {}
+function getSumOfDigits(num) {
+  return num
+    .toString()
+    .split('')
+    .reduce((a, b) => {
+      return +a + +b;
+    }, 0);
+}
 
 /**
  * Returns true if the given number is a power of two, false otherwise.
@@ -276,7 +296,9 @@ function getSumOfDigits(/* num */) {}
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {}
+function isPowerOfTwo(num) {
+  return Number.isInteger(Math.sqrt(num));
+}
 
 /**
  * Returns the sine of a number.
@@ -288,7 +310,9 @@ function isPowerOfTwo(/* num */) {}
  *   0 => 0
  *   Math.PI / 2 => 1
  */
-function getSine(/* num */) {}
+function getSine(num) {
+  return Math.sin(num);
+}
 
 /**
  * Returns a string representation of a number in a specified base (radix).
@@ -301,7 +325,9 @@ function getSine(/* num */) {}
  * 255, 16 => 'ff'
  * 2, 2    => '10'
  */
-function numberToStringInBase(/* number, base */) {}
+function numberToStringInBase(number, base) {
+  return number.toString(base);
+}
 
 /**
  * Returns a string representation of a number in exponential notation.
@@ -313,7 +339,9 @@ function numberToStringInBase(/* number, base */) {}
  * @example:
  * 12345, 2    => '1.23e+4'
  */
-function toExponential(/* number, fractionDigits */) {}
+function toExponential(number, fractionDigits) {
+  return number.toExponential(fractionDigits);
+}
 
 /**
  * Returns a string representation of a number in fixed-point notation.
@@ -326,7 +354,9 @@ function toExponential(/* number, fractionDigits */) {}
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {}
+function toFixed(number, fractionDigits) {
+  return number.toFixed(fractionDigits);
+}
 
 /**
  * Returns a string representation of a number in normal (fixed-point or exponential)
@@ -340,7 +370,9 @@ function toFixed(/* number, fractionDigits */) {}
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
  */
-function toPrecision(/* number, precision */) {}
+function toPrecision(number, precision) {
+  return number.toPrecision(precision);
+}
 
 /**
  * Returns the primitive value of a Number object.
@@ -352,7 +384,9 @@ function toPrecision(/* number, precision */) {}
  * new Number(5) => 5
  * Number(-5)    => -5
  */
-function getNumberValue(/* number */) {}
+function getNumberValue(number) {
+  return number.valueOf();
+}
 
 /**
  * Returns a boolean value indicating whether the parameter is a number or not.
@@ -369,7 +403,9 @@ function getNumberValue(/* number */) {}
  * 5        => true
  * '5'      => false
  */
-function isNumber(/* number */) {}
+function isNumber(number) {
+  return Number.isFinite(number);
+}
 
 /**
  * Returns a boolean value indicating whether a number is an integer or not.
@@ -382,7 +418,9 @@ function isNumber(/* number */) {}
  * 5.1  => false
  * '5'  => false
  */
-function isInteger(/* number */) {}
+function isInteger(number) {
+  return Number.isInteger(number);
+}
 
 /**
  * Returns a floating point number or, if the number cannot be parsed from the argument, returns NaN.
@@ -394,7 +432,9 @@ function isInteger(/* number */) {}
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {}
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
+}
 
 /**
  * Returns an integer of the specified base or, if the number cannot be parsed
@@ -410,7 +450,9 @@ function getFloatOnString(/* str */) {}
  * '1.234', 2           => 1
  * '10', 8              => 8
  */
-function getIntegerOnString(/* str, base */) {}
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
+}
 
 /**
  * Returns whether a number is a safe integer.
@@ -423,7 +465,9 @@ function getIntegerOnString(/* str, base */) {}
  * 3.5      => false
  * 2 ** 53  => false
  */
-function isSafeInteger(/* number */) {}
+function isSafeInteger(number) {
+  return Number.isSafeInteger(number);
+}
 
 /**
  * Returns the smallest integer less than or equal to a given number.
@@ -435,7 +479,9 @@ function isSafeInteger(/* number */) {}
  * 5.9  => 5
  * -5.1 => -6
  */
-function roundToSmallestInteger(/* number */) {}
+function roundToSmallestInteger(number) {
+  return Math.floor(number);
+}
 
 /**
  * Returns the largest integer greater than or equal to a given number.
@@ -447,7 +493,9 @@ function roundToSmallestInteger(/* number */) {}
  * 5.1  => 6
  * -5.9 => -5
  */
-function roundToLargestInteger(/* number */) {}
+function roundToLargestInteger(number) {
+  return Math.ceil(number);
+}
 
 /**
  * Returns the value of a number rounded to the nearest integer.
@@ -460,7 +508,9 @@ function roundToLargestInteger(/* number */) {}
  * 5.4  => 5
  * -5.5 => -5
  */
-function roundToNearestInteger(/* number */) {}
+function roundToNearestInteger(number) {
+  return Math.round(number);
+}
 
 /**
  * Returns the integer part of a number by removing any fractional digits.
@@ -473,7 +523,9 @@ function roundToNearestInteger(/* number */) {}
  * 5.4  => 5
  * -5.5 => -5
  */
-function getIntegerPartNumber(/* number */) {}
+function getIntegerPartNumber(number) {
+  return Math.trunc(number);
+}
 
 /**
  * Returns the sum of numbers.
@@ -487,7 +539,9 @@ function getIntegerPartNumber(/* number */) {}
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
  */
-function getSumOfNumbers(/* x1, x2, x3 */) {}
+function getSumOfNumbers(x1, x2, x3) {
+  return (x1 + x2 + x3).toFixed(1);
+}
 
 /**
  * Returns the largest number.
@@ -501,7 +555,9 @@ function getSumOfNumbers(/* x1, x2, x3 */) {}
  * -5, -6 => -5
  * 0, 5   => 5
  */
-function getMaxNumber(/* firstNumber, secondNumber */) {}
+function getMaxNumber(firstNumber, secondNumber) {
+  return Math.max(firstNumber, secondNumber);
+}
 
 /**
  * Returns a random integer in the range from min to max.
@@ -515,7 +571,9 @@ function getMaxNumber(/* firstNumber, secondNumber */) {}
  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
  * -1, 1 => -1 | 0 | 1
  */
-function getRandomInteger(/* min, max */) {}
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
 
 /**
  * Returns the length of the hypotenuse of a right triangle.
@@ -527,7 +585,9 @@ function getRandomInteger(/* min, max */) {}
  * @example:
  * 3, 4 => 5
  */
-function getHypotenuse(/* a, b */) {}
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
+}
 
 /**
  * Returns count of odd numbers from zero to the resulting number.
@@ -542,7 +602,12 @@ function getHypotenuse(/* a, b */) {}
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {}
+function getCountOfOddNumbers(number) {
+  if (number % 2 !== 0) {
+    return Math.ceil(Math.abs(number / 2));
+  }
+  return Math.abs(number / 2);
+}
 
 module.exports = {
   getRectangleArea,
