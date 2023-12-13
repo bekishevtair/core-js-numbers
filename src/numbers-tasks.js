@@ -108,7 +108,10 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  return [x1, x2, y1, y2];
+  return Math.acos(
+    (x1 * x2 + y1 * y2) /
+      (Math.sqrt(x1 ** 2 + y1 ** 2) * Math.sqrt(x2 ** 2 + y2 ** 2))
+  );
 }
 
 /**
@@ -177,7 +180,9 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {}
+function roundToPowerOfTen(num, pow) {
+  return Math.round(num / 10 ** pow) * 10 ** pow;
+}
 
 /**
  * Returns true is the number is prime; otherwise false.
@@ -196,7 +201,17 @@ function roundToPowerOfTen(/* num, pow */) {}
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {}
+function isPrime(n) {
+  if (n <= 1) {
+    return false;
+  }
+  for (let i = 2; i <= Math.sqrt(n); i += 1) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
 
 /**
  * Tries to convert value to number and returns it if conversion was successful;
@@ -214,10 +229,7 @@ function isPrime(/* n */) {}
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  if (+value === 'number') {
-    return +value;
-  }
-  return def;
+  return +value || def;
 }
 
 /**
@@ -248,7 +260,13 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {}
+function getFibonacciNumber(index) {
+  const res = [0, 1];
+  for (let i = 2; i <= index; i += 1) {
+    res.push(res.at(-2) + res.at(-1));
+  }
+  return res[index];
+}
 
 /**
  * Returns the sum of all numbers from 1 to n.
@@ -297,7 +315,12 @@ function getSumOfDigits(num) {
  *   15  => false
  */
 function isPowerOfTwo(num) {
-  return Number.isInteger(Math.sqrt(num));
+  for (let i = 0; i < 1000; i += 1) {
+    if (2 ** i === num) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
